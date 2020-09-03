@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "passwort.h"
+#include "datum.h"
+#include "person.h"
 #include <QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +28,8 @@ private:
     Ui::FrmMain *ui;
 
     Passwort p;
+    Datum d;
+    Person u;
 
     QListWidgetItem* Zeile_1=new QListWidgetItem;
     QListWidgetItem* Zeile_2=new QListWidgetItem;

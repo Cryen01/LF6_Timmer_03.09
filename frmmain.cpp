@@ -113,10 +113,14 @@ void FrmMain::on_edtPasswort_textChanged(const QString & arg1)
 
 void FrmMain::on_btnBestaetigen_1_clicked()
 {
+    d.setdatum(ui->edtGeburtsdatum->text());
+    u.setvorname(ui->edtVorname->text());
+    u.setnachname(ui->edtNachname->text());
+
     ui->lstAusgabe->clear();
-    ui->lstAusgabe->addItem("Vorname: "+ui->edtVorname->text());
-    ui->lstAusgabe->addItem("Nachname: "+ui->edtNachname->text());
-    ui->lstAusgabe->addItem("Geburtsdatum: "+ui->edtGeburtsdatum->text());
+    ui->lstAusgabe->addItem("Vorname: "+u.getvorname());
+    ui->lstAusgabe->addItem("Nachname: "+u.getnachname());
+    ui->lstAusgabe->addItem("Geburtsdatum: "+d.getdatum());
     ui->lstAusgabe->addItem("Email-Adresse: "+ui->edtEmail->text());
     ui->lstAusgabe->addItem("Passwort: "+p.getpasswort());
 }
