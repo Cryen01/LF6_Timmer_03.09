@@ -11,31 +11,33 @@ FrmMain::FrmMain(QWidget *parent)
     Zeile_1->setText("Das Passwort benötigt:");
     Zeile_1->setBackground(Qt::black);
     Zeile_1->setForeground(Qt::white);
-    ui->lstPasswortAnforderungen->addItem(Zeile_1);
 
     Zeile_2->setText("- Mindestens 8 Zeichen");
     Zeile_2->setBackground(Qt::black);
     Zeile_2->setForeground(Qt::red);
-    ui->lstPasswortAnforderungen->addItem(Zeile_2);
 
     Zeile_3->setText("- Mindestens 2 Ziffern");
     Zeile_3->setBackground(Qt::black);
     Zeile_3->setForeground(Qt::red);
-    ui->lstPasswortAnforderungen->addItem(Zeile_3);
 
     Zeile_4->setText("- Mindestens 2 Sonderzeichen");
     Zeile_4->setBackground(Qt::black);
     Zeile_4->setForeground(Qt::red);
-    ui->lstPasswortAnforderungen->addItem(Zeile_4);
 
     Zeile_5->setText("- Nicht die Worte: Hund, Katze oder Maus");
     Zeile_5->setBackground(Qt::black);
     Zeile_5->setForeground(Qt::green);
-    ui->lstPasswortAnforderungen->addItem(Zeile_5);
 
     Zeile_6->setText("- Mindestens einen Groß- und einen Klein-Buchstaben");
     Zeile_6->setBackground(Qt::black);
     Zeile_6->setForeground(Qt::red);
+
+
+    ui->lstPasswortAnforderungen->addItem(Zeile_1);
+    ui->lstPasswortAnforderungen->addItem(Zeile_2);
+    ui->lstPasswortAnforderungen->addItem(Zeile_3);
+    ui->lstPasswortAnforderungen->addItem(Zeile_4);
+    ui->lstPasswortAnforderungen->addItem(Zeile_5);
     ui->lstPasswortAnforderungen->addItem(Zeile_6);
 }
 
@@ -46,10 +48,9 @@ FrmMain::~FrmMain()
 
 void FrmMain::on_edtPasswort_textChanged(const QString & arg1)
 {
-    QString passwort = ui->edtPasswort->text();
-    p.setpasswort(passwort);
+    p.setpasswort(arg1);
 
-
+    //Testet die Länge und ändert die Farbe
     p.checklength();
     if (p.checklength() == 1)
     {
@@ -61,8 +62,7 @@ void FrmMain::on_edtPasswort_textChanged(const QString & arg1)
         Zeile_2->setForeground(Qt::red);
     }
 
-
-
+    //Testet die Nummern und ändert die Farbe
     p.checknumbers();
     if (p.checknumbers() == 1)
     {
@@ -74,8 +74,7 @@ void FrmMain::on_edtPasswort_textChanged(const QString & arg1)
         Zeile_3->setForeground(Qt::red);
     }
 
-
-
+    //Testet die Sonderzeichen und ändert die Farbe
     p.checkspecialcharacters();
     if (p.checkspecialcharacters() == 1)
     {
@@ -87,8 +86,7 @@ void FrmMain::on_edtPasswort_textChanged(const QString & arg1)
         Zeile_4->setForeground(Qt::red);
     }
 
-
-
+    //Testet die Wörter Hund, Katze & Maus und ändert die Farbe
     p.checkhundkatzemaus();
     if (p.checkhundkatzemaus() == 0)
     {
@@ -100,8 +98,7 @@ void FrmMain::on_edtPasswort_textChanged(const QString & arg1)
         Zeile_5->setForeground(Qt::green);
     }
 
-
-
+    //Testet die Groß & Klein-Buchstaben und ändert die Farbe
     p.checkgrosskleincharacters();
     if (p.checkgrosskleincharacters() == 1)
     {
