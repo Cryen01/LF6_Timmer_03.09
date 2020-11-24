@@ -1,10 +1,10 @@
 #include "frmmain.h"
 #include "ui_frmmain.h"
 
-
 FrmMain::FrmMain(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::FrmMain)
+//Erstellt die Zeilen in der Text-Box mit den zugeordneten Farben
 {
     ui->setupUi(this);
 
@@ -130,14 +130,31 @@ void FrmMain::on_btnBestaetigen_2_clicked()
 {
     ui->lstAusgabe->clear();
 
-    if (p.checkgrosskleincharacters() == 1 && p.checkhundkatzemaus() == 1 && p.checklength() == 1 && p.checknumbers() == 1 && p.checkspecialcharacters() == 1)
-    {
-        ui->lstAusgabe->addItem("Danke, ihre Daten wurden gespeichert!");
-        ui->lstAusgabe->addItem("Das Passwort lautet "+p.getpasswort());
+    if (ui->edtEmail->text().isEmpty() == 1) {
+        ui->lstAusgabe->addItem("Sie haben keine Email eingegeben!");
     }
 
-    else
-    {
-        ui->lstAusgabe->addItem("Dieses Passwort erfüllt nicht die Bedingungen!");
+    if (ui->edtVorname->text().isEmpty() == 1) {
+        ui->lstAusgabe->addItem("Sie haben keinen Vornamen eingegeben!");
     }
+
+    if (ui->edtNachname->text().isEmpty() == 1) {
+        ui->lstAusgabe->addItem("Sie haben keinen Nachnamen eingegeben!");
+    }
+
+    if (p.checkgrosskleincharacters() == 1 && p.checkhundkatzemaus() == 1 && p.checklength() == 1 && p.checknumbers() == 1 && p.checkspecialcharacters() == 1)
+    {
+        if (ui->edtVorname->text().isEmpty() == 0 && ui->edtNachname->text().isEmpty() == 0 && ui->edtEmail->text().isEmpty() == 0)
+        {
+            ui->lstAusgabe->addItem("Danke, ihre Daten wurden gespeichert!");
+            ui->lstAusgabe->addItem("Das Passwort lautet "+p.getpasswort());
+        }
+
+        else
+        {
+            ui->lstAusgabe->addItem("Dieses Passwort erfüllt nicht die Bedingungen!");
+        }
+    }
+
+
 }
